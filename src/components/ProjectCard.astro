@@ -24,18 +24,19 @@ const { title, featured = false, tilt = 'left', problem, built, signal, links } 
     {featured && <span class="card__label">featured</span>}
     <h3 class="card__title">{title}</h3>
     <dl class="card__details">
+          <div class="card__row">
+        <dt>What is it?</dt>
+        <dd>{signal}</dd>
+      </div>
       <div class="card__row">
         <dt>Problem</dt>
         <dd>{problem}</dd>
       </div>
       <div class="card__row">
-        <dt>Built</dt>
+        <dt>What was Built</dt>
         <dd>{built}</dd>
       </div>
-      <div class="card__row">
-        <dt>Why it matters</dt>
-        <dd>{signal}</dd>
-      </div>
+
     </dl>
     <div class="card__links">
       {

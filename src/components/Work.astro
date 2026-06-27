@@ -3,14 +3,14 @@ import Section from './Section.astro';
 import ProjectCard from './ProjectCard.astro';
 ---
 
-<Section title="Personal projects" id="personal-projects">
+<Section title="Personal" id="personal">
   <ProjectCard
     title="BandSynq"
     featured
     tilt="left"
     problem="Grassroots bands juggle songs, setlists, and rehearsals across chats, notes, and memory."
-    built="Cross-platform app built with Vue, Quasar, TypeScript, and Supabase — architecture, backend, and UX. User interviews and closed beta with working bands."
-    signal="Founder-led product from scratch. Not a portfolio filler — a real tool shaped by the people who use it."
+    built="Android and iOS app built with Vue, Quasar, TypeScript, and using Supabase architecture for backend API, Auth, and Edge Functions. Closed beta with working bands."
+    signal={`Founder-led product from scratch. Accepted on Bath Spa University's Create Growth programme.`}
     links={[
       { href: 'https://www.bandsynq.com', label: 'bandsynq.com' },
     ]}
@@ -18,9 +18,9 @@ import ProjectCard from './ProjectCard.astro';
   <ProjectCard
     title="Cocktail Shaker"
     tilt="right"
-    problem="Ingredient-led cocktail discovery should be grounded in real data — not random AI-generated recipes."
-    built="Vue app with in-app ranking and a conversational hostess for presentation. Supabase edge functions handle the AI layer."
-    signal="Product taste over hype. The ranking and discovery UX is the product; AI is a presentation layer."
+    problem="Knowing what to make with what you have. It should be grounded in real data, not random AI-generated recipes."
+    built="Vue app with in-app AI ranking and a conversational AI hostess for presentation. Supabase edge functions handle the AI layer. OpenAI provides the language model."
+    signal="Cocktail recommendations anchored in a data API wrapped in an AI is a presentation layer."
     links={[
       { href: 'https://cocktail-shaker-six.vercel.app/', label: 'Live app', variant: 'teal' },
       { href: 'https://github.com/PaulWheatcroft/cocktail-shaker-2', label: 'GitHub' },
@@ -29,7 +29,7 @@ import ProjectCard from './ProjectCard.astro';
 </Section>
 
 <style>
-  :global(#personal-projects) {
+  :global(#personal) {
     background: rgba(61, 52, 46, 0.15);
   }
 </style>
