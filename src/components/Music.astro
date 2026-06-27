@@ -1,0 +1,88 @@
+---
+import Section from './Section.astro';
+---
+
+<Section title="Music" id="music">
+  <div class="music">
+    <div class="music__main">
+      <h3 class="music__label-name">8 Meg Stick Records</h3>
+      <p class="music__desc">
+        I run my own independent record label — releasing music, working with artists, and getting
+        tracks out across streaming platforms. Same creative drive that built BandSynq, applied to
+        records instead of code.
+      </p>
+      <a
+        href="https://8megstickrecords.com/index.html"
+        class="btn btn--teal"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        8megstickrecords.com
+      </a>
+    </div>
+    <aside class="music__aside">
+      <p class="music__craft">
+        Multi-instrumentalist, songwriter, and producer. Music isn't a hobby section on a CV — it's
+        how I think about craft, collaboration, and finishing things.
+      </p>
+      <span class="music__tag" aria-hidden="true">♥</span>
+    </aside>
+  </div>
+</Section>
+
+<style>
+  .music {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .music__label-name {
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .music__desc {
+    color: var(--text-muted);
+    max-width: 55ch;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+
+  .music__aside {
+    position: relative;
+    background: var(--navy);
+    padding: 2rem;
+    border-right: 4px solid var(--accent-red);
+    transform: rotate(0.6deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .music__aside {
+      transform: none;
+    }
+  }
+
+  .music__craft {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .music__tag {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.25rem;
+    font-size: 1.5rem;
+    color: var(--accent-red);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .music {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

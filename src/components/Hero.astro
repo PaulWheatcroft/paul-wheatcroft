@@ -1,0 +1,145 @@
+<section class="hero" aria-label="Introduction">
+  <div class="hero__image-wrap">
+    <img
+      src="/images/portrait.jpg"
+      alt="Paul Wheatcroft leaning against a graffiti-covered brick wall"
+      class="hero__image"
+      width="1200"
+      height="1600"
+      fetchpriority="high"
+    />
+    <div class="hero__overlay" aria-hidden="true"></div>
+  </div>
+  <div class="hero__content container">
+    <p class="hero__tag">product developer</p>
+    <h1 class="hero__name">Paul Wheatcroft</h1>
+    <p class="hero__hook">
+      I build products from discovery to production — and release records on the side.
+    </p>
+    <a href="#who-i-am" class="btn hero__cta">Who I am</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    min-height: calc(100dvh - var(--nav-height));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .hero__image-wrap {
+    position: relative;
+    min-height: 50vh;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 40%,
+      rgba(28, 26, 25, 0.6) 70%,
+      var(--bg) 100%
+    );
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 3rem;
+    padding-left: clamp(1rem, 4vw, 3rem);
+    z-index: 1;
+    will-change: transform;
+  }
+
+  .hero__tag {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin: 0 0 0.75rem;
+  }
+
+  .hero__name {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__hook {
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    color: var(--text-muted);
+    max-width: 32ch;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+
+  .hero__cta {
+    align-self: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: 45vh auto;
+    }
+
+    .hero__overlay {
+      background: linear-gradient(
+        180deg,
+        transparent 30%,
+        rgba(28, 26, 25, 0.85) 70%,
+        var(--bg) 100%
+      );
+    }
+
+    .hero__content {
+      padding-block: 2rem;
+      padding-inline: 0;
+      margin-top: -4rem;
+    }
+  }
+</style>
+
+<script>
+  const hero = document.querySelector('.hero');
+  const content = hero?.querySelector('.hero__content');
+
+  if (hero && content && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const getNavHeight = () =>
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 64;
+
+    const update = () => {
+      const rect = hero.getBoundingClientRect();
+      const scrolled = getNavHeight() - rect.top;
+      const range = rect.height * 2.95;
+      const progress = Math.min(Math.max(scrolled / range, 0), 1);
+      content.style.transform = `translateX(${progress * 100}%)`;
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
+</script>

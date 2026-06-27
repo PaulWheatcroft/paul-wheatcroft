@@ -1,0 +1,84 @@
+---
+import Section from './Section.astro';
+
+const links = [
+  {
+    href: 'mailto:paul_wheatcroft@hotmail.com',
+    label: 'Email',
+    detail: 'paul_wheatcroft@hotmail.com',
+  },
+  {
+    href: 'https://github.com/PaulWheatcroft',
+    label: 'GitHub',
+    detail: 'PaulWheatcroft',
+  },
+  {
+    href: 'https://linkedin.com/in/paulwheatcroft',
+    label: 'LinkedIn',
+    detail: 'paulwheatcroft',
+  },
+];
+---
+
+<Section title="Contact" id="contact">
+  <p class="contact__intro">Building something? Want to talk product, bands, or records — get in touch.</p>
+  <ul class="contact__list">
+    {
+      links.map(({ href, label, detail }) => (
+        <li class="contact__item">
+          <a href={href} class="contact__link" target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+            <span class="contact__label">{label}</span>
+            <span class="contact__detail">{detail}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Section>
+
+<style>
+  .contact__intro {
+    color: var(--text-muted);
+    max-width: 45ch;
+    margin-bottom: 2rem;
+  }
+
+  .contact__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact__link {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(242, 236, 228, 0.08);
+    transition: border-color 0.2s ease;
+  }
+
+  .contact__link:hover {
+    border-color: var(--accent-pink);
+  }
+
+  .contact__label {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+
+  .contact__detail {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .contact__link:hover .contact__detail {
+    color: var(--accent-teal);
+  }
+</style>

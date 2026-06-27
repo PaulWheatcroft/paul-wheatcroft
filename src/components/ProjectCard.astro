@@ -1,0 +1,159 @@
+---
+interface Link {
+  href: string;
+  label: string;
+  variant?: 'default' | 'teal';
+}
+
+interface Props {
+  title: string;
+  featured?: boolean;
+  tilt?: 'left' | 'right';
+  problem: string;
+  built: string;
+  signal: string;
+  links: Link[];
+}
+
+const { title, featured = false, tilt = 'left', problem, built, signal, links } = Astro.props;
+---
+
+<article class:list={['card', { 'card--featured': featured, 'card--tilt-left': tilt === 'left', 'card--tilt-right': tilt === 'right' }]}>
+  <div class="card__accent" aria-hidden="true"></div>
+  <div class="card__body">
+    {featured && <span class="card__label">featured</span>}
+    <h3 class="card__title">{title}</h3>
+    <dl class="card__details">
+      <div class="card__row">
+        <dt>Problem</dt>
+        <dd>{problem}</dd>
+      </div>
+      <div class="card__row">
+        <dt>Built</dt>
+        <dd>{built}</dd>
+      </div>
+      <div class="card__row">
+        <dt>Why it matters</dt>
+        <dd>{signal}</dd>
+      </div>
+    </dl>
+    <div class="card__links">
+      {
+        links.map(({ href, label, variant = 'default' }) => (
+          <a
+            href={href}
+            class:list={['btn', { 'btn--teal': variant === 'teal' }]}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    background: var(--surface);
+    border-left: 4px solid var(--accent-pink);
+    padding: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .card--featured {
+    border-left-width: 6px;
+    padding: 0.15rem;
+  }
+
+  .card--featured .card__body {
+    padding: 2rem 2.25rem;
+  }
+
+  .card--tilt-left {
+    transform: rotate(-0.5deg);
+  }
+
+  .card--tilt-right {
+    transform: rotate(0.4deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card--tilt-left,
+    .card--tilt-right {
+      transform: none;
+    }
+  }
+
+  .card__accent {
+    position: absolute;
+    top: -8px;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: var(--accent-teal);
+    opacity: 0.15;
+    border-radius: 50%;
+  }
+
+  .card--featured .card__accent {
+    width: 60px;
+    height: 60px;
+    opacity: 0.2;
+  }
+
+  .card__body {
+    padding: 1.75rem 2rem;
+  }
+
+  .card__label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-pink);
+    margin-bottom: 0.5rem;
+  }
+
+  .card__title {
+    margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+
+  .card__details {
+    margin: 0 0 1.75rem;
+  }
+
+  .card__row {
+    margin-bottom: 1rem;
+  }
+
+  .card__row:last-child {
+    margin-bottom: 0;
+  }
+
+  .card__row dt {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.25rem;
+  }
+
+  .card__row dd {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>
