@@ -1,0 +1,358 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const fonts = [
+  {
+    name: 'Bebas Neue',
+    slug: 'Bebas+Neue',
+    family: "'Bebas Neue', sans-serif",
+    tier: 'Baseline (current)',
+    note: 'Condensed poster — clean but not very graffiti.',
+  },
+  {
+    name: 'Rampart One',
+    slug: 'Rampart+One',
+    family: "'Rampart One', sans-serif",
+    tier: 'Tier 1 — outlined blocks',
+    note: 'White letterforms with outline — closest to your wall photo.',
+  },
+  {
+    name: 'Russo One',
+    slug: 'Russo+One',
+    family: "'Russo One', sans-serif",
+    tier: 'Tier 1 — street poster',
+    note: 'Square block caps — strong for section titles.',
+  },
+  {
+    name: 'Bangers',
+    slug: 'Bangers',
+    family: "'Bangers', sans-serif",
+    tier: 'Tier 2 — bubble throw-up',
+    note: 'Classic bubble letters — loud, unmistakably street.',
+  },
+  {
+    name: 'Titan One',
+    slug: 'Titan+One',
+    family: "'Titan One', sans-serif",
+    tier: 'Tier 2 — rounded bubble',
+    note: 'Softer bubble style — friendly graffiti energy.',
+  },
+  {
+    name: 'Rubik Spray Paint',
+    slug: 'Rubik+Spray+Paint',
+    family: "'Rubik Spray Paint', sans-serif",
+    tier: 'Tier 3 — aerosol',
+    note: 'Literal spray drip — best for h1 only, use sparingly.',
+  },
+  {
+    name: 'Black Ops One',
+    slug: 'Black+Ops+One',
+    family: "'Black Ops One', sans-serif",
+    tier: 'Tier 3 — stencil',
+    note: 'Military stencil — raw, urban, readable at h2 size.',
+  },
+  {
+    name: 'Sedgwick Ave Display',
+    slug: 'Sedgwick+Ave+Display',
+    family: "'Sedgwick Ave Display', cursive",
+    tier: 'Tier 3 — hand-painted',
+    note: 'Loose sign lettering — human, not corporate.',
+  },
+  {
+    name: 'Permanent Marker',
+    slug: 'Permanent+Marker',
+    family: "'Permanent Marker', cursive",
+    tier: 'Tier 4 — tag / marker',
+    note: 'Quick hand tag — accent only, too informal for large h1.',
+  },
+];
+
+const pairings = [
+  {
+    label: 'Pairing A — Outlined',
+    h1Font: "'Rampart One', sans-serif",
+    h2Font: "'Russo One', sans-serif",
+    h1Name: 'Rampart One',
+    h2Name: 'Russo One',
+  },
+  {
+    label: 'Pairing B — Bubble + stencil',
+    h1Font: "'Bangers', sans-serif",
+    h2Font: "'Black Ops One', sans-serif",
+    h1Name: 'Bangers',
+    h2Name: 'Black Ops One',
+  },
+  {
+    label: 'Pairing C — Spray accent',
+    h1Font: "'Rubik Spray Paint', sans-serif",
+    h2Font: "'Sedgwick Ave Display', cursive",
+    h1Name: 'Rubik Spray Paint',
+    h2Name: 'Sedgwick Ave Display',
+  },
+];
+
+const sectionTitles = ['Professional', 'Personal', 'Music'];
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Black+Ops+One&family=Permanent+Marker&family=Rampart+One&family=Rubik+Spray+Paint&family=Russo+One&family=Sedgwick+Ave+Display&family=Source+Sans+3:wght@400;600&family=Titan+One&display=swap"
+  rel="stylesheet"
+/>
+
+<BaseLayout
+  title="Font Preview — Paul Wheatcroft"
+  description="Graffiti-influenced font preview for paulwheatcroft.me headings."
+>
+  <main class="preview">
+    <header class="preview__header container">
+      <p class="preview__eyebrow">Dev preview — not linked from nav</p>
+      <h1 class="preview__title">Graffiti font preview</h1>
+      <p class="preview__intro">
+        Compare heading fonts using your real site copy. Pick a single font or a pairing, then
+        we'll apply it to h1 and h2 across the site.
+      </p>
+      <a href="/" class="btn">Back to site</a>
+    </header>
+
+    <section class="preview__section container" aria-labelledby="individual-heading">
+      <h2 id="individual-heading" class="preview__section-title">Individual fonts</h2>
+      <div class="preview__grid">
+        {
+          fonts.map((font) => (
+            <article class="preview__card" style={`--sample-font: ${font.family}`}>
+              <header class="preview__card-header">
+                <h3 class="preview__font-name">{font.name}</h3>
+                <p class="preview__tier">{font.tier}</p>
+                <p class="preview__note">{font.note}</p>
+                <a
+                  href={`https://fonts.google.com/specimen/${font.slug}`}
+                  class="preview__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Fonts specimen
+                </a>
+              </header>
+              <div class="preview__samples">
+                <p class="preview__label">h1</p>
+                <p class="preview__h1">Paul Wheatcroft</p>
+                <p class="preview__label">h2</p>
+                <div class="preview__h2-row">
+                  {sectionTitles.map((title) => (
+                    <p class="preview__h2">{title}</p>
+                  ))}
+                </div>
+                <p class="preview__label">h3</p>
+                <p class="preview__h3">BandSynq</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="preview__section container" aria-labelledby="pairings-heading">
+      <h2 id="pairings-heading" class="preview__section-title">Recommended pairings</h2>
+      <p class="preview__pairing-intro">
+        Wild h1 + calmer h2 — usually the sweet spot for this site.
+      </p>
+      <div class="preview__pairings">
+        {
+          pairings.map((pairing) => (
+            <article class="preview__pairing-card">
+              <header class="preview__card-header">
+                <h3 class="preview__pairing-label">{pairing.label}</h3>
+                <p class="preview__pairing-meta">
+                  h1: {pairing.h1Name} · h2: {pairing.h2Name}
+                </p>
+              </header>
+              <div class="preview__samples">
+                <p class="preview__label">h1 — {pairing.h1Name}</p>
+                <p class="preview__h1" style={`font-family: ${pairing.h1Font}`}>
+                  Paul Wheatcroft
+                </p>
+                <p class="preview__label">h2 — {pairing.h2Name}</p>
+                <div class="preview__h2-row">
+                  {sectionTitles.map((title) => (
+                    <p class="preview__h2" style={`font-family: ${pairing.h2Font}`}>
+                      {title}
+                    </p>
+                  ))}
+                </div>
+                <p class="preview__label">h3 — {pairing.h2Name}</p>
+                <p class="preview__h3" style={`font-family: ${pairing.h2Font}`}>BandSynq</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .preview {
+    padding-block: 3rem 4rem;
+  }
+
+  .preview__header {
+    margin-bottom: 4rem;
+  }
+
+  .preview__eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.75rem;
+  }
+
+  .preview__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .preview__intro {
+    color: var(--text-muted);
+    max-width: 55ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .preview__section {
+    margin-bottom: 4rem;
+  }
+
+  .preview__section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-pink);
+    display: inline-block;
+  }
+
+  .preview__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    gap: 1.5rem;
+  }
+
+  .preview__card,
+  .preview__pairing-card {
+    background: var(--surface);
+    border-left: 4px solid var(--accent-pink);
+    padding: 1.5rem;
+  }
+
+  .preview__pairing-card {
+    border-left-color: var(--accent-teal);
+  }
+
+  .preview__card-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(242, 236, 228, 0.08);
+  }
+
+  .preview__font-name,
+  .preview__pairing-label {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.35rem;
+  }
+
+  .preview__tier,
+  .preview__pairing-meta {
+    font-size: 0.85rem;
+    color: var(--accent-teal);
+    margin: 0 0 0.5rem;
+  }
+
+  .preview__note {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+  }
+
+  .preview__link {
+    font-size: 0.85rem;
+  }
+
+  .preview__label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 0.35rem;
+  }
+
+  .preview__label:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  .preview__samples {
+    font-family: var(--sample-font);
+  }
+
+  .preview__h1 {
+    font-family: var(--sample-font);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .preview__h2-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .preview__h2 {
+    font-family: var(--sample-font);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .preview__h3 {
+    font-family: var(--sample-font);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .preview__pairing-intro {
+    color: var(--text-muted);
+    margin: -1rem 0 2rem;
+    max-width: 50ch;
+  }
+
+  .preview__pairings {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 900px) {
+    .preview__pairings {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
