@@ -1,20 +1,11 @@
 ---
 import Section from './Section.astro';
 import ProjectCard from './ProjectCard.astro';
+import BandSynqShowcase from './BandSynqShowcase.astro';
 ---
 
 <Section title="Personal" id="personal">
-  <ProjectCard
-    title="BandSynq"
-    featured
-    tilt="left"
-    problem="Grassroots bands juggle songs, setlists, and rehearsals across chats, notes, and memory."
-    built="Android and iOS app built with Vue, Quasar, TypeScript, and using Supabase architecture for backend API, Auth, and Edge Functions. Closed beta with working bands."
-    signal={`Founder-led product from scratch. Accepted on Bath Spa University's Create Growth programme.`}
-    links={[
-      { href: 'https://www.bandsynq.com', label: 'bandsynq.com' },
-    ]}
-  />
+  <BandSynqShowcase />
   <ProjectCard
     title="Cocktail Shaker"
     tilt="right"
